@@ -1,70 +1,31 @@
-"use strict";
+// Задание 1
 function getArrayParams(arr) {
-  let min = Math.min(...arr);
-  let max = Math.max(...arr);
-  let sum = 0;
-  let avg;
+  let min, max, sum, avg;
 
-    for (let i = 0; i < arr.length; ++i) {
-      if (max < arr[i]) {
-        max = arr[i];
-      } else if (min > arr[i]) {
-        min = arr[i];
-      }
+  // Ваш код
 
-      sum += arr[i];
-    }
-    avg = sum/arr.length;
-
-  return { 
-    min: min, 
-    max: max, 
-    avg: +avg.toFixed(2) // + здесь для преобразования к числу
-    };
+  return { min: min, max: max, avg: avg };
 }
- console.log(getArrayParams([-99, 99, 10]));
 
 // Задание 2
-function worker(arr) {            // nasadka myasorubki
-  let sum = 0;
-  for (let i = 0; i < arr.length; ++i) {
-      sum += arr[i];
-  }
+function worker(arr) {
+  let sum;
+
+  // Ваш код
+
   return sum;
 }
 
-function makeWork(arrOfArr, worker) {
-  let max = 0;
-    for(let i = 0; i < arrOfArr.length; ++i) {
-      let result = worker(arrOfArr[i]);
-      if (result > max) {
-        max = result;
-      }
-    }
-    return max;
-}
-makeWork([[1, 2, 3, 4], [10, 20, -10, -20]], worker);
+function makeWork(arrOfArr, func) {
+  let max;
 
+  // Ваш кода
+  // for ...
+  
+  return max;
+}
 
 // Задание 3
-function worker2(arr) {       
-    let max = Math.max(...arr);
-    let min = Math.min(...arr);
-    let distinct;
-    for (let i = 0; i < arr.length; ++i) {
-      distinct = Math.abs(max-min);
-    }
-    return distinct;
-  }
-
-  function makeWork(arrOfArr, worker2) {
-    let max = 0;
-      for(let i = 0; i < arrOfArr.length; ++i) {
-        let result = worker2(arrOfArr[i]);
-        if (result > max) {
-          max = result;
-        }
-      }
-      return max;
-  }
-  makeWork([[1, 2, 3, 4], [10, 20, -10, -20]], worker2);
+function worker2(arr) {
+  // Ваш код
+}

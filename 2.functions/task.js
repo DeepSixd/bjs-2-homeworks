@@ -7,11 +7,11 @@
     let avg;
 
       for (let i = 0; i < arr.length; ++i) {
-        if (max < arr[i]) {
-          max = arr[i];
-        } else if (min > arr[i]) {
-          min = arr[i];
-        }
+        // if (max < arr[i]) {
+        //   max = arr[i];
+        // } else if (min > arr[i]) {
+        //   min = arr[i];
+        // }
       sum += arr[i];
       }
     avg = sum/arr.length;
@@ -47,23 +47,8 @@ makeWork([[1, 2, 3, 4], [10, 20, -10, -20]], worker);
 
 
 // Задание 3
-function worker2(arr) {       
-    let max = Math.max(...arr);
-    let min = Math.min(...arr);
-    let distinct;
-    for (let i = 0; i < arr.length; ++i) {
-      distinct = Math.abs(max-min);
-    }
-    return distinct;
-  }
 
-  function makeWork(arrOfArr, worker2) {
-    let max = 0;
-      for(let i = 0; i < arrOfArr.length; ++i) {
-        let result = worker2(arrOfArr[i]);
-        if (result > max) {
-          max = result;
-        }
-      }
-      return max;
-  }
+function worker2(arr) {    
+  return (Math.max(...arr)-Math.min(...arr));
+}
+

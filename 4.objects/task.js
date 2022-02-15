@@ -31,14 +31,13 @@ Student.prototype.getAverage = function () {
   for (let i = 0; i < this.marks.length; i++) {
     sum += this.marks[i];
   }
-  let avg = sum / this.marks.length; // как это еще можно сделать? подскажешь? есть идеи?
+  let avg = sum / this.marks.length; 
   return avg;
 };
 
 Student.prototype.exclude = function (reason) {
   delete this.marks;
   delete this.subject;  
-  
   this.excluded = reason;
 };
 

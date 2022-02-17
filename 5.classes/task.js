@@ -9,7 +9,7 @@ class PrintEditionItem {
         this.state = this._state*1.5;
     }
 
-    set state(arg) {
+    set state (arg) {
         if (arg < 0) {
             return this._state = 0;
         } else if (arg > 100) {
@@ -149,8 +149,7 @@ class Student {
         for (let i = 0; i < this.marks[subjectName].length; i++) {
           sum += this.marks[subjectName][i];
         }
-        let avg = sum / this.marks[subjectName].length; // как это еще можно сделать? подскажешь? есть идеи?
-        return avg;
+        let avg = sum / this.marks[subjectName].length; 
       }
 
     getAverage () {

@@ -12,7 +12,7 @@ function compareArrays(arr1, arr2) {
   return result;
 }
   
-  // console.log(compareArrays([8,1,2], [8,1,2]));
+console.log(compareArrays([8,1,2], [8,1,2]));
   
 
 

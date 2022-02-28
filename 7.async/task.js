@@ -98,6 +98,17 @@ class AlarmClock {
 let alarmClock = new AlarmClock();
 
 
-alarmClock.addClock("21:49", () => console.log("Wake up"), 1);
-alarmClock.addClock("21:50", () => console.log("Wake up, Neo"), 2);
+alarmClock.addClock("22:29", () => console.log("Wake up"), 1);
+alarmClock.addClock("22:26", () => { console.log("Wake up, Neo"); alarmClock.removeClock(2)}, 2);
 
+
+alarmClock.addClock("22:27", () => {
+    console.log("WAKE UUUUUUUUUUP");
+    alarmClock.stop();
+    alarmClock.clearAlarms();
+    alarmClock.printAlarms();
+}, 3);
+alarmClock.addClock("22:25", () => console.log("HVATIT SPAT"), 1);
+
+alarmClock.printAlarms();
+alarmClock.start();

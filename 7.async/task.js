@@ -38,12 +38,41 @@ class AlarmClock {
         return 'h:m'.replace('h', hours).replace('m', minutes);
     }
 
-    // start() {
-    //     function checkClock(callClock) {
-
+    // start() { костыльный вариант с переопределением this
+    //     let _this = this;
+    //     function checkClock(elem) {
+    //         if (elem.time == _this.getCurrentFormattedTime()) {
+    //             elem.actionCallback();
+    //         }
     //     }
-    // }
+    //     if (this.timerId == null) {
+    //         this.timerId = setInterval(function() {
+    //             _this.alarmCollection.forEach(elem => {
+    //                 checkClock(elem);            // для каждого elem массива alarmCollection вызывается checkClock раз в секунду
+    //             })
+    //         }, 1000);
+            
+    //     }
 
+    // }
+    
+    start() {
+        if (this.timerId == null) {
+            this.timerId = setInterval(this.checkClocks.bind(this), 1000);
+        };
+    };
+
+    checkClock(elem) {
+        if (elem.time == this.getCurrentFormattedTime()) {
+            elem.actionCallback();
+        };
+    };
+    
+    checkClocks() {
+        this.alarmCollection.forEach(elem => {
+            this.checkClock(elem);
+        });
+    };
 
     stop() {
         if(this.timerId) {
@@ -53,7 +82,7 @@ class AlarmClock {
     }
 
     printAlarms() {
-        alarmCollection.forEach(elem => {
+        this.alarmCollection.forEach(elem => {
             console.log(`Будильник ${elem.id} заведен на ${elem.time}`)
         });
     }
@@ -66,6 +95,9 @@ class AlarmClock {
 
 
 
+let alarmClock = new AlarmClock();
 
 
- //getCurrentFormattedTime - возвращает текущее время в строковом формате HH:MM.
+alarmClock.addClock("21:49", () => console.log("Wake up"), 1);
+alarmClock.addClock("21:50", () => console.log("Wake up, Neo"), 2);
+

@@ -16,14 +16,18 @@ class AlarmClock {
 
     removeClock(id) {
         if(this.alarmCollection.some(elem => elem.id == id)) {
-            this.alarmCollection.filter(() => {
-                this.alarmCollection.pop()
-            });
+            this.alarmCollection.pop(
+                () => {
+                    this.alarmCollection.filter()
+                },0);
             return true;
         } else {
             return false;
         }
     }
+
+
+
 
     getCurrentFormattedTime() {
         let date = new Date;
@@ -57,22 +61,46 @@ class AlarmClock {
     // }
     
     start() {
+        let _checkClock = checkClock.bind(this);
+        function checkClock(elem) {
+            if (elem.time == this.getCurrentFormattedTime()) { 
+                elem.actionCallback();
+            }
+        }
+
         if (this.timerId == null) {
-            this.timerId = setInterval(this.checkClocks.bind(this), 1000);
+            this.timerId = setInterval(
+               () => this.alarmCollection.forEach(elem => _checkClock(elem)), 1000);
         };
+        
     };
 
-    checkClock(elem) {
-        if (elem.time == this.getCurrentFormattedTime()) {
-            elem.actionCallback();
-        };
-    };
+    // let checkAlarm = checkClock.bind(this);
+    //      function checkClock(objAlarmСlock) {
+    //     	if (objAlarmСlock.time === this.getCurrentFormattedTime()) {
+    //             objAlarmСlock.func();
+    //         } 
+    //      }
+    //      if (!this.timerId) this.timerId = setInterval(
+    //          () => this.alarmCollection.forEach(el => checkAlarm(el)),1000);
+    // }
+
+    // checkClock(elem) {
+    //     if (elem.time == this.getCurrentFormattedTime()) { // убрал bind
+    //         elem.actionCallback();
+    //     };
+    // };
     
-    checkClocks() {
-        this.alarmCollection.forEach(elem => {
-            this.checkClock(elem);
-        });
-    };
+    // checkClocks() {
+    //     this.alarmCollection.forEach(elem => {
+    //         this.checkClock(elem);
+    //     });
+    // };
+
+
+
+
+
 
     stop() {
         if(this.timerId) {
@@ -98,17 +126,17 @@ class AlarmClock {
 let alarmClock = new AlarmClock();
 
 
-alarmClock.addClock("22:29", () => console.log("Wake up"), 1);
-alarmClock.addClock("22:26", () => { console.log("Wake up, Neo"); alarmClock.removeClock(2)}, 2);
+alarmClock.addClock("22:59", () => console.log("Wake up"), 1);
+alarmClock.addClock("23:00", () => { console.log("Wake up, Neo"); alarmClock.removeClock(2)}, 2);
 
 
-alarmClock.addClock("22:27", () => {
+alarmClock.addClock("23:01", () => {
     console.log("WAKE UUUUUUUUUUP");
     alarmClock.stop();
     alarmClock.clearAlarms();
     alarmClock.printAlarms();
 }, 3);
-alarmClock.addClock("22:25", () => console.log("HVATIT SPAT"), 1);
+alarmClock.addClock("23:02", () => console.log("HVATIT SPAT"), 1);
 
 alarmClock.printAlarms();
 alarmClock.start();

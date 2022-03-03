@@ -16,17 +16,15 @@ class AlarmClock {
 
     removeClock(id) {
         if(this.alarmCollection.some(elem => elem.id == id)) {
-            this.alarmCollection.pop(
+            this.alarmCollection.splice(
                 () => {
-                    this.alarmCollection.filter()
-                },0);
+                    this.alarmCollection.findIndex()
+                },1);
             return true;
         } else {
             return false;
         }
     }
-
-
 
 
     getCurrentFormattedTime() {
@@ -42,23 +40,6 @@ class AlarmClock {
         return 'h:m'.replace('h', hours).replace('m', minutes);
     }
 
-    // start() { костыльный вариант с переопределением this
-    //     let _this = this;
-    //     function checkClock(elem) {
-    //         if (elem.time == _this.getCurrentFormattedTime()) {
-    //             elem.actionCallback();
-    //         }
-    //     }
-    //     if (this.timerId == null) {
-    //         this.timerId = setInterval(function() {
-    //             _this.alarmCollection.forEach(elem => {
-    //                 checkClock(elem);            // для каждого elem массива alarmCollection вызывается checkClock раз в секунду
-    //             })
-    //         }, 1000);
-            
-    //     }
-
-    // }
     
     start() {
         let _checkClock = checkClock.bind(this);
@@ -74,33 +55,6 @@ class AlarmClock {
         };
         
     };
-
-    // let checkAlarm = checkClock.bind(this);
-    //      function checkClock(objAlarmСlock) {
-    //     	if (objAlarmСlock.time === this.getCurrentFormattedTime()) {
-    //             objAlarmСlock.func();
-    //         } 
-    //      }
-    //      if (!this.timerId) this.timerId = setInterval(
-    //          () => this.alarmCollection.forEach(el => checkAlarm(el)),1000);
-    // }
-
-    // checkClock(elem) {
-    //     if (elem.time == this.getCurrentFormattedTime()) { // убрал bind
-    //         elem.actionCallback();
-    //     };
-    // };
-    
-    // checkClocks() {
-    //     this.alarmCollection.forEach(elem => {
-    //         this.checkClock(elem);
-    //     });
-    // };
-
-
-
-
-
 
     stop() {
         if(this.timerId) {
